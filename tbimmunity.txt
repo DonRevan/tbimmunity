@@ -1,0 +1,24 @@
+"Games"
+{
+	 "cstrike"
+	 {
+		  "Offsets"
+		  {
+				"PlayerByIndex"
+				{
+					 "windows"	"379" //0x17B
+					 "linux"		"260" //0x104
+				}
+		  }
+
+			"Signatures"
+			{
+				"BalanceTeams"
+				{
+					 "library"	"server"
+					 "windows"	"\x55\x8B\xEC\x83\xEC\x58\x53\x8B\xD9\x83\xBB\xF8\x02\x00\x00\x01"
+					 "linux"		"@_ZN12CCSGameRules12BalanceTeamsEv"
+				}
+		  }
+	 }
+}

@@ -65,6 +65,10 @@ cell_t NCSS_BalanceTeams(IPluginContext *pContext, const cell_t *params)
 	}
 
 	 gamerules = (CGameRules *)g_pSDKTools->GetGameRules();
+	 if(!gamerules)
+	 {
+		 return pContext->ThrowNativeError("Failed to get a CGameRules pointer from SDKTools.");
+	 }
 
 #ifdef _DEBUG
 	 g_pSM->LogMessage(myself, "Calling BalanceTeams()");

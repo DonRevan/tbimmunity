@@ -115,6 +115,8 @@ bool TBExtension::SDK_OnLoad(char *error, size_t maxlength, bool late)
 	sharesys->AddDependency(myself, "sdktools.ext", true, true);
 	sharesys->AddNatives(myself, TBNatives);
 
+	g_pForward = g_pForwards->CreateForward("OnBalanceCheck", ET_Event, 1, NULL, Param_Cell);
+
 	return true;
 }
 
@@ -132,6 +134,8 @@ bool TBExtension::QueryRunning(char *error, size_t maxlength)
 
 void TBExtension::SDK_OnUnload()
 {
+	g_pForwards->ReleaseForward(g_pForward);
+
 	/* Apply backup patch. */
 	memcpy(m_oldBytes.address, m_oldBytes.bytes, 5);
 }

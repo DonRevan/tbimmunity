@@ -34,9 +34,11 @@
 
 #include "smsdk_ext.h"
 #include <ISDKTools.h>
+#include <sourcehook.h>
+#include <sh_memory.h>
 
 /* Uncomment to enable debug messages. */
-//#define _DEBUG
+#define _DEBUG
 
 class CBasePlayer;
 class CGameRules;
@@ -47,16 +49,6 @@ struct mempatch_t
 	void *address;
 	unsigned char bytes[5];
 };
-
-/*inline CBaseEntity *GetContainingEntity( edict_t *pent )
-{
-	if ( pent && pent->GetUnknown() )
-	{
-		return pent->GetUnknown()->GetBaseEntity();
-	}
-
-	return NULL;
-}*/
 
 class TBExtension : public SDKExtension
 {

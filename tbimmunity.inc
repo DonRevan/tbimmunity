@@ -4,16 +4,17 @@
 #define _tbimmunity_included
 
  /**
- * @brief Called when the game wants to know if a player can be balanced.
+ * @brief	Called when the game wants to know if a player can be balanced.
  *
- * @param client	Index of the client.
- * @return 			Anything but Plugin_Continue to tell the game to not balance the player.
+ * @param	client	Index of the client.
+ * @return			Anything but Plugin_Continue to tell the game to not balance the player.
  */
 forward Action:OnBalanceCheck(client);
 
 /**
- * @brief Asks the game to re-balance the teams.
+ * @brief	Asks the game to re-balance the teams.
  *
+ * Please note that the internal function will not called if the teams are even/full.
  */
 native CSS_BalanceTeams();
 

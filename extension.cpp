@@ -34,7 +34,6 @@
 /* We've to use the old JIT because the new masm doesn't support custom output positions(or I overlooked it). */
 #include <jit/jit_helpers.h>
 #include <jit/x86/x86_macros.h>
-#include <sh_memory.h>
 
 TBExtension g_Extension;
 IGameConfig *g_pGameConf = NULL;
@@ -146,7 +145,9 @@ void TBExtension::SDK_OnUnload()
 
 CBasePlayer *hkUTIL_PlayerByIndex(int entindex)
 {
-	if(g_pForward->GetFunctionCount() > 0)
+	CBasePlayer *pPlayer = PlayerByIndex(entindex);
+
+	if(pPlayer && g_pForward->GetFunctionCount() > 0)
 	{
 		cell_t res;
 
@@ -162,12 +163,7 @@ CBasePlayer *hkUTIL_PlayerByIndex(int entindex)
 		}
 	}
 
-	/* Something like this should also work: */
-	//IGamePlayer *pPlayer = playerhelpers->GetGamePlayer(entindex);
-	//return (CBasePlayer*)GetContainingEntity(pPlayer->GetEdict());
-
-	/* Call the original function. */
-	return PlayerByIndex(entindex);
+	return pPlayer;
 }
 
 tPlayerByIndex TBExtension::PatchBalanceFunction(void *addr, int offset, mempatch_t *patch)

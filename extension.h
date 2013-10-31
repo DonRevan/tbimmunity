@@ -38,7 +38,7 @@
 #include <sh_memory.h>
 
 /* Uncomment to enable debug messages. */
-#define _DEBUG
+//#define _DEBUG
 
 class CBasePlayer;
 class CGameRules;

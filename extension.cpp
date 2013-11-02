@@ -62,6 +62,10 @@ cell_t NCSS_BalanceTeams(IPluginContext *pContext, const cell_t *params)
 	{
 		return pContext->ThrowNativeError("Failed to lookup ISDKTools interface.");
 	}
+	if(g_pSDKTools && g_pSDKTools->GetInterfaceVersion() < 2)
+	{
+		g_pSM->LogError(myself, "SDKTools is outdated. BalanceTeams is disabled.");
+	}
 
 	 gamerules = (CGameRules *)g_pSDKTools->GetGameRules();
 	 if(!gamerules)
@@ -131,7 +135,11 @@ void TBExtension::SDK_OnAllLoaded()
 bool TBExtension::QueryRunning(char *error, size_t maxlength)
 {
 	SM_CHECK_IFACE(SDKTOOLS, g_pSDKTools);
-
+	if(g_pSDKTools && g_pSDKTools->GetInterfaceVersion() < 2)
+	{
+		g_pSM->LogError(myself, "SDKTools is outdated. BalanceTeams native disabled.");
+	}
+	
 	return true;
 }
 

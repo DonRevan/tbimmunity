@@ -64,7 +64,7 @@ cell_t NCSS_BalanceTeams(IPluginContext *pContext, const cell_t *params)
 	}
 	if(g_pSDKTools && g_pSDKTools->GetInterfaceVersion() < 2)
 	{
-		return pContext->ThrowNativeError(myself, "SDKTools is outdated. BalanceTeams is disabled.");
+		return pContext->ThrowNativeError("SDKTools is outdated. BalanceTeams is disabled.");
 	}
 
 	 gamerules = (CGameRules *)g_pSDKTools->GetGameRules();
